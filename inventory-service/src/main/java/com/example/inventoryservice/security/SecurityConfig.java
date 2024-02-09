@@ -30,7 +30,8 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .headers(h->h.frameOptions(fo->fo.disable()))
                 .authorizeHttpRequests(ar-> ar.requestMatchers("/swagger-ui.html","/swagger-ui/**","/v3/**","/h2-console/**").permitAll())
-               // .authorizeHttpRequests(ar-> ar.requestMatchers("/api/products").hasAnyAuthority("ADMIN"))
+               //.authorizeHttpRequests(ar-> ar.requestMatchers("/api/products").hasAnyAuthority("ADMIN"))
+                .authorizeHttpRequests(ar-> ar.requestMatchers("/api/products").permitAll())
                 .authorizeHttpRequests(ar->ar.anyRequest().authenticated())
                 .oauth2ResourceServer(o2rs->o2rs.jwt(jwt->jwt.jwtAuthenticationConverter(jwtAuthConverter)))
                 .build();
